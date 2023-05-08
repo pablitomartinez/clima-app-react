@@ -1,10 +1,21 @@
 import React from 'react';
+import {
+    Stack,
+    InputGroup,
+    InputLeftAddon,
+    Input,
+    InputRightAddon
+  } from '@chakra-ui/react';
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   return (
-    <div>
-      
-    </div>
+    <Stack spacing={4} mx="19%" my="5%">
+        <InputGroup size='sm'>
+            <InputLeftAddon children='https://' />
+            <Input placeholder='Busca tu ciudad' />
+            <InputRightAddon children='Buscar ' onClick={props.onSearch}/>
+        </InputGroup>
+    </Stack>
   );
 }
 
