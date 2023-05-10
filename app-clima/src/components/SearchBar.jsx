@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Stack,
     InputGroup,
-    InputLeftAddon,
     Input,
     InputRightAddon
   } from '@chakra-ui/react';
 
-const SearchBar = (props) => {
+const SearchBar = ({onSearch}) => {
+  const [searchInput, setSearchInput] = useState("")
+ 
+  const changeHandler = (event) =>{
+    setSearchInput(event.target.value)
+    // console.log(searchInput);
+  }
   return (
-    <Stack spacing={4} mx="19%" my="5%">
+    <Stack spacing={4} mx={20} my="5%">
         <InputGroup size='sm'>
-            <InputLeftAddon children='https://' />
-            <Input placeholder='Busca tu ciudad' />
-            <InputRightAddon children='Buscar ' onClick={props.onSearch}/>
+            <Input placeholder='Busca tu ciudad' onChange={changeHandler}/>
+            <InputRightAddon children='Buscar ' onClick={() => onSearch(searchInput)}/>
         </InputGroup>
     </Stack>
   );

@@ -8,12 +8,13 @@ import {
   Flex,
   Center,
   useColorModeValue,
+  CloseButton ,
   HStack,
 } from '@chakra-ui/react';
 
 import { BsArrowUpRight, BsHeartFill, BsHeart } from 'react-icons/bs';
 
-const Card = () => {
+const Card = ({max, min, name, img, key,id, onClose}) => {
 
     const [liked, setLiked] = useState(false);
 
@@ -29,6 +30,19 @@ const Card = () => {
         border={'1px'}
         borderColor="black"
         boxShadow={useColorModeValue('6px 6px 0 black', '6px 6px 0 cyan')}>
+        <Box position="relative">
+          <CloseButton
+            position="absolute"
+            top={2}
+            right={2}
+            size="md"
+            _hover={{
+              bg: 'gray.300',
+              color: 'black',
+            }}
+            onClick={ ()=> onClose(id)}
+          />
+        </Box>
         <Box h={'200px'} borderBottom={'1px'} borderColor="black">
           <Img
             src={
@@ -53,14 +67,16 @@ const Card = () => {
               React
             </Text>
           </Box>
-          <Heading color={'black'} fontSize={'2xl'} noOfLines={1}>
-            React v18.0
+          <Heading color={'black'} fontSize={'2xl'} noOfLines={1} display="flex" alignItems="center" justifyContent="space-between" >
+            <span style={{marginRight: "10px"}}>{name}</span>
+            <img src={"http://openweathermap.org/img/wn/"+img+"@2x.png"} width="80" height="80" alt=""/>
           </Heading>
           <Text color={'gray.500'} noOfLines={2}>
-            In this post, we will give an overview of what is new in React 18,
-            and what it means for the future.
+            La tempertatura Max es de {max}
           </Text>
-        </Box>
+          <Text color={'gray.500'} noOfLines={2}>
+            La tempertatura Min es de {min}
+          </Text>        </Box>
         <HStack borderTop={'1px'} color="black">
           <Flex
             p={4}
