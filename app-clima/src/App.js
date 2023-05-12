@@ -30,15 +30,15 @@ function App() {
 
   return (
     <div className="App">
-      <Routes>
+      <Navbar onSearch={onSearch}/>
 
-        <Route path='/' element={<Navbar onSearch={onSearch}/>} />
+      <Routes>
           
+        <Route path="/" element={ <ContentCards cities={cities} onClose={onClose}/> } />
         <Route exact path='/about' component={<About/>} />
         
 
       </Routes>
-        <ContentCards cities={cities} onClose={onClose} />
     </div>
   );
 }

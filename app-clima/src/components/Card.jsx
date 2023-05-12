@@ -19,7 +19,7 @@ const Card = ({max, min, name, img, key,id, onClose}) => {
     const [liked, setLiked] = useState(false);
 
   return (
-    <Center py={6}>
+    <Center py={2} px={0}>
       <Box
         w="xs"
         rounded={'sm'}

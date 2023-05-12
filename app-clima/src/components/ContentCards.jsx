@@ -1,10 +1,13 @@
 import React from 'react';
 import Card from './Card';
+import {
+SimpleGrid
+} from '@chakra-ui/react';
 
 const ContentCards = ({cities, onClose}) => {
   console.log("CITIES",cities);
   return (
-    <div>
+    <SimpleGrid columns={3} spacing={0} >
       {cities.map(
         city =><Card 
           max={city.main.temp_max}
@@ -16,7 +19,7 @@ const ContentCards = ({cities, onClose}) => {
           onClose={onClose}
         /> 
       )}
-    </div>
+    </SimpleGrid>
   );
 }
 
