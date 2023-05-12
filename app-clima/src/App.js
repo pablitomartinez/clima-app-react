@@ -17,8 +17,13 @@ function App() {
     // console.log(`estoy ejecutando onsearch con ${ciudad}`);
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}&units=metric`)
     .then((response) => {
+      // console.log(response);
+
       setCities((oldCities) => [...oldCities, response.data]);
-      console.log(cities);
+      // console.log(cities);
+    })
+    .catch((error)=> {
+      alert(`La ciudad ${ciudad} no fue encontrada`)
     })
   }
 

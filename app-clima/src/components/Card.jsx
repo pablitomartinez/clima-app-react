@@ -19,6 +19,8 @@ const Card = ({max, min, name, img, key,id, onClose}) => {
     const [liked, setLiked] = useState(false);
 
   return (
+    <div key={key} >
+
     <Center py={2} px={0}>
       <Box
         w="xs"
@@ -107,6 +109,7 @@ const Card = ({max, min, name, img, key,id, onClose}) => {
         </HStack>
       </Box>
     </Center>
+              </div>
   );
 }
 
