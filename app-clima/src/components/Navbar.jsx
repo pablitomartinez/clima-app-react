@@ -15,7 +15,7 @@ const Navbar = ({onSearch}) => {
       </Link>
       <Link to='/'>
         <Box pr={20} display="flex" alignItems="center">
-          <img src="https://dummyimage.com/200x200/cccccc/000000.png&text=Logo" alt="" />
+          <img src="https://dummyimage.com/200x200/cccccc/000000.png&text=Logo" alt="" width={"50"} height={"50"}/>
           <Text ml={2} fontWeight="bold">
             App Clima
           </Text>
