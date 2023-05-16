@@ -1,28 +1,26 @@
 import React from 'react';
-import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   Box,
   Heading,
   Text,
   Img,
-  Flex,
   Center,
   useColorModeValue,
-  CloseButton ,
-  HStack,
+  CloseButton
 } from '@chakra-ui/react';
 
-import { BsArrowUpRight, BsHeartFill, BsHeart } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+const Details = ({onFilter}) => {
 
-const Card = ({max, min, name, img, key, id, onClose}) => {
+  var params = useParams()
+  // console.log("params -->",params);
+  let city = onFilter(params.ciudadId)
+  // console.log(city);
 
-    const [liked, setLiked] = useState(false);
-
+  
   return (
-    <div key={key} >
-
-    <Center py={2} px={0}>
+    <div>
+      <Center py={2} px={0}>
       <Box
         w="xs"
         rounded={'sm'}
@@ -43,7 +41,6 @@ const Card = ({max, min, name, img, key, id, onClose}) => {
               bg: 'gray.300',
               color: 'black',
             }}
-            onClick={ ()=> onClose(id)}
           />
         </Box>
         <Box h={'200px'} borderBottom={'1px'} borderColor="black">
@@ -67,53 +64,37 @@ const Card = ({max, min, name, img, key, id, onClose}) => {
             color="white"
             mb={2}>
             <Text fontSize={'xs'} fontWeight="medium">
-              React
+              {city.sys.country}
             </Text>
           </Box>
           <Heading color={'black'} fontSize={'2xl'} noOfLines={1} display="flex" alignItems="center" justifyContent="space-between" >
-            <span style={{marginRight: "10px"}}>{name}</span>
-            <img src={"http://openweathermap.org/img/wn/"+img+"@2x.png"} width="80" height="80" alt=""/>
+            <span style={{marginRight: "10px"}}>{city.name}</span>
+            <img src={"http://openweathermap.org/img/wn/"+city.weather[0].icon+"@2x.png"} width="80" height="80" alt=""/>
           </Heading>
           <Text color={'gray.500'} noOfLines={2}>
-            La tempertatura Max es de {max}
+            La tempertatura Max es de {city.main.temp_max}
           </Text>
           <Text color={'gray.500'} noOfLines={2}>
-            La tempertatura Min es de {min}
-          </Text>        </Box>
-        <HStack borderTop={'1px'} color="black">
-          <Flex
-            p={4}
-            alignItems="center"
-            justifyContent={'space-between'}
-            roundedBottom={'sm'}
-            cursor={'pointer'}
-            w="full">
-              < Link to={`/details/${id}`}>
-                <Text fontSize={'md'} fontWeight={'semibold'}>
-                  Mas detalles
-                </Text>
-              </Link>
-            <BsArrowUpRight />
-          </Flex>
-          <Flex
-            p={4}
-            alignItems="center"
-            justifyContent={'space-between'}
-            roundedBottom={'sm'}
-            borderLeft={'1px'}
-            cursor="pointer"
-            onClick={() => setLiked(!liked)}>
-            {liked ? (
-              <BsHeartFill fill="red" fontSize={'24px'} />
-            ) : (
-              <BsHeart fontSize={'24px'} />
-            )}
-          </Flex>
-        </HStack>
+            La tempertatura Min es de {city.main.temp_min}
+          </Text>        
+          <Text color={'gray.500'} noOfLines={2}>
+            Con una Humedad de {city.main.humidity}
+          </Text>        
+          <Text color={'gray.500'} noOfLines={2}>
+            Visibilidad de {city.visibility}
+          </Text>        
+          <Text color={'gray.500'} noOfLines={2}>
+            La tempertatura Min es de {city.min}
+          </Text>        
+          </Box>
+        
       </Box>
     </Center>
-              </div>
+    </div>
   );
 }
 
-export default Card;
+export default Details;
+
+
+
